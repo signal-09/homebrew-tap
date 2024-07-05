@@ -3,9 +3,9 @@ class Iproute4mac < Formula
 
   desc "iproute for Mac"
   homepage "https://github.com/signal-09/iproute4mac"
-  version "0.1.3"
-  url "https://files.pythonhosted.org/packages/08/2f/95896c61381863674982c8c7987ac8b8811a4b693db127565c82d68c2934/iproute4mac-0.1.3.tar.gz"
-  sha256 "c838c30e3f1248956d0d7bbc7112ce8b9b1b72c19d92549d43da16796a302f08"
+  version "0.1.4"
+  url "https://files.pythonhosted.org/packages/fe/b1/e70075e4c10babf03f3c56ac68297650a96842dd5daf279fce76c03c32fa/iproute4mac-0.1.4.tar.gz"
+  sha256 "9a31e11ae0ac17fe96ff3011b67b5f8c8353e878c4643518101ba44e44abdabc"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
 
   depends_on :macos
