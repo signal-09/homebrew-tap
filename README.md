@@ -14,33 +14,33 @@ See more at https://docs.brew.sh/Taps
 ## How do I install packages from here?
 
 ```sh
-brew install signal-09/repo/name
+brew install signal-09/tap/name
 ```
 
 You can also only add the tap which makes formulae within it
 available in search results (`brew search` output):
 
 ```sh
-brew tap signal-09/repo
+brew tap signal-09/tap
 ```
 
 Note: to clone the tap via SSH you will need to use:
 
 ```sh
-brew tap signal-09/repo https://github.com/signal-09/homebrew-repo
+brew tap signal-09/tap https://github.com/signal-09/homebrew-tap
 ```
 
 While you may search across taps, it is necessary to always use
-fully qualified name (incl. the `signal-09/repo/` prefix)
+fully qualified name (incl. the `signal-09/tap/` prefix)
 when refering to formulae in external taps such as this one
 outside of search.
 
 ## What packages are available?
 
-With the following commands, you can install the latest generally available (GA) version of each product:
+With the following commands, you can install the latest version of each project:
 ```sh
 # Formulae
-brew install signl09/repo/iproute4mac
+brew install signl09/tap/iproute4mac
 ```
 
 Many packages here are in prerelease stage (including as alpha's, beta's, and release candidates).

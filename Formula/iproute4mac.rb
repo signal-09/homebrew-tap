@@ -3,13 +3,15 @@ class Iproute4mac < Formula
 
   desc "iproute for Mac"
   homepage "https://github.com/signal-09/iproute4mac"
-  version "0.1.1"
-  url "https://files.pythonhosted.org/packages/a1/d7/a90f6c7047e946570e9a846abe6053267d760cd31c0d1216b6f1c876e7cc/iproute4mac-0.1.1.tar.gz"
-  sha256 "3d37cc6584b0c24ed74cefa8a85439eacec4061b21b5caac9543e98209304035"
+  version "0.1.3"
+  url "https://files.pythonhosted.org/packages/08/2f/95896c61381863674982c8c7987ac8b8811a4b693db127565c82d68c2934/iproute4mac-0.1.3.tar.gz"
+  sha256 "c838c30e3f1248956d0d7bbc7112ce8b9b1b72c19d92549d43da16796a302f08"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
 
   depends_on :macos
   depends_on "python@3.12"
+
+  conflicts_with "iproute2mac", because: "iproute2mac provides same executables"
 
   def install
     virtualenv_install_with_resources
