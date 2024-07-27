@@ -11,7 +11,7 @@ class Iproute4mac < Formula
   depends_on :macos
   depends_on "python@3.12"
 
-  conflicts_with "iproute2mac", because: "iproute2mac provides same executables"
+  conflicts_with "iproute2", "iproute2mac", because: "both provide same executables"
 
   def install
     virtualenv_install_with_resources
