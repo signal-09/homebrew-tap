@@ -1,11 +1,10 @@
 class Iproute4mac < Formula
   include Language::Python::Virtualenv
 
-  desc "iproute for Mac"
+  desc "CLI wrapper for iproute2 Linux routing utilities"
   homepage "https://github.com/signal-09/iproute4mac"
-  version "0.3.2"
-  url "https://files.pythonhosted.org/packages/d1/28/faab9dbafd9ebced6582a6f71058b8e8e3ae2b0fed054ff61a5e3b9dfcdc/iproute4mac-0.3.2.tar.gz"
-  sha256 "fae76d42d3f44f65fcc1347220527c0bc0fb2b768db269583481e366c22afcaa"
+  url "https://files.pythonhosted.org/packages/fc/b3/31749bf2ffff2b7eaf20fd8e03430354e9dbfcefc53894a4367aae297c47/iproute4mac-0.4.0.tar.gz"
+  sha256 "a02253fffb4debea3e2bd493aecbc0881fe8357afa32418ee0d4b13db9d7c949"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
 
   depends_on :macos
@@ -18,6 +17,7 @@ class Iproute4mac < Formula
   end
 
   test do
-    system "#{bin}/ip -Version"
+    output = shell_output("#{bin}/ip addr").strip
+    assert_match "link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00", output
   end
 end
