@@ -1,0 +1,36 @@
+name: Update releases
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Update Formulae
+      run: |
+        git config --global user.name 'Ettore Simone'
+        git config --global user.email 'signal-09@users.noreply.github.com'
+
+        for TEMPLATE in Formula/*.rb.template; do
+            FORMULA=${TEMPLATE%.template}
+            PACKAGE=$(basename ${FORMULA%.rb})
+
+            PYPI_JSON="https://pypi.python.org/pypi/${PACKAGE}/json"
+
+            JQ_VERSION='.info.version'
+            export VERSION=$(curl -fsSL "${PYPI_JSON}" | jq -r "${JQ_VERSION}")
+
+            JQ_SHA256='.releases["'${VERSION}'"][]|select(.packagetype=="sdist")|.digests.sha256'
+            export SHA256=$(curl -fsSL "${PYPI_JSON}" | jq -r "${JQ_SHA256}")
+
+            envsubst < ${TEMPLATE} > ${FORMULA}
+
+            if $(git status --porcelain | grep -q '^ M'); then
+                git commit -am "Upgraded ${PACKAGE} to ${VERSION}"
+                git push
+            fi
+        done
