@@ -3,9 +3,9 @@ class Iproute4mac < Formula
 
   desc "CLI wrapper for iproute2 Linux routing utilities"
   homepage "https://pypi.org/project/iproute4mac/"
-  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-0.4.3.tar.gz"
+  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-0.5.0.tar.gz"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
-  sha256 "c3be1df7005ac03dc449331021101e09f7681990518336deb9add8059a311e82"
+  sha256 "c0dd447894429f9dedf9f50e576ccde1cc6bce97e2acec8f24e75b8b9e6333bf"
   license "Apache-2.0"
 
   depends_on :macos
