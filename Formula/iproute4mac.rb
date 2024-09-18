@@ -13,6 +13,11 @@ class Iproute4mac < Formula
 
   conflicts_with "iproute2mac", because: "both provide same executables"
 
+  resource "pbr" do
+    url "https://files.pythonhosted.org/packages/b2/35/80cf8f6a4f34017a7fe28242dc45161a1baa55c41563c354d8147e8358b2/pbr-6.1.0.tar.gz"
+    sha256 "788183e382e3d1d7707db08978239965e8b9e4e5ed42669bf4758186734d5f24"
+  end
+
   def install
     virtualenv_install_with_resources
   end
