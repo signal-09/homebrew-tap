@@ -3,20 +3,22 @@ class Iproute4mac < Formula
 
   desc "CLI wrapper for iproute2 Linux routing utilities"
   homepage "https://pypi.org/project/iproute4mac/"
-  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-${VERSION}.tar.gz"
+  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-{{ version }}.tar.gz"
+  sha256 "{{ sha256 }}"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
-  sha256 "${SHA256}"
   license "Apache-2.0"
 
   depends_on :macos
   depends_on "python@3.12"
 
   conflicts_with "iproute2mac", because: "both provide same executables"
+{%- for item in requirements %}
 
-  resource "pbr" do
-    url "https://files.pythonhosted.org/packages/b2/35/80cf8f6a4f34017a7fe28242dc45161a1baa55c41563c354d8147e8358b2/pbr-6.1.0.tar.gz"
-    sha256 "788183e382e3d1d7707db08978239965e8b9e4e5ed42669bf4758186734d5f24"
+  resource "{{ item.name }}" do
+    url "{{ item.url }}"
+    sha256 "{{ item.sha256 }}"
   end
+{%- endfor %}
 
   def install
     virtualenv_install_with_resources

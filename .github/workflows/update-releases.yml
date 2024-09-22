@@ -12,27 +12,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+
     - name: Update Formulae
       run: |
         git config --global user.name 'Ettore Simone'
         git config --global user.email 'signal-09@users.noreply.github.com'
 
-        for TEMPLATE in Formula/*.rb.template; do
-            FORMULA=${TEMPLATE%.template}
-            PACKAGE=$(basename ${FORMULA%.rb})
+        for TEMPLATE in Formula/*.rb.j2; do
+            PACKAGE=$(basename ${TEMPLATE%%.*})
 
-            PYPI_JSON="https://pypi.python.org/pypi/${PACKAGE}/json"
-
-            JQ_VERSION='.info.version'
-            export VERSION=$(curl -fsSL "${PYPI_JSON}" | jq -r "${JQ_VERSION}")
-
-            JQ_SHA256='.releases["'${VERSION}'"][]|select(.packagetype=="sdist")|.digests.sha256'
-            export SHA256=$(curl -fsSL "${PYPI_JSON}" | jq -r "${JQ_SHA256}")
-
-            envsubst < ${TEMPLATE} > ${FORMULA}
+            COMMENT=$(python tools/update_formula.py ${PACKAGE})
 
             if $(git status --porcelain | grep -q '^ M'); then
-                git commit -am "Upgraded ${PACKAGE} to ${VERSION}"
+                git commit -am "${COMMENT}"
                 git push
             fi
         done
