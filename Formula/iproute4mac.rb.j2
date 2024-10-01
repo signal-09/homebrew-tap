@@ -22,6 +22,7 @@ class Iproute4mac < Formula
 
   def install
     virtualenv_install_with_resources
+    share.install prefix/"libexec/share/man" if !Dir[prefix/"libexec/share/man"].empty?
   end
 
   test do

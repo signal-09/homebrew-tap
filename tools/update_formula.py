@@ -92,7 +92,7 @@ def get_requirements(requirements_txt):
 
 def template(pkg_name, version, download_url, sha256, requirements):
     template_path = os.path.join(os.path.dirname(__file__), "../Formula")
-    environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path))
+    environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_path), keep_trailing_newline=True)
     template_file = f"{pkg_name}.rb.j2"
     formula_file = os.path.join(template_path, f"{pkg_name}.rb")
     formula_template = environment.get_template(template_file)
