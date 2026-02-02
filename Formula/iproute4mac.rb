@@ -3,19 +3,19 @@ class Iproute4mac < Formula
 
   desc "CLI wrapper for iproute2 Linux routing utilities"
   homepage "https://pypi.org/project/iproute4mac/"
-  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-0.5.7.tar.gz"
-  sha256 "12e55f81c322ef808886e3064fe54bebcc0b4cd5f6e3c677dfd3fb5b53563d7e"
+  url "https://pypi.io/packages/source/i/iproute4mac/iproute4mac-0.6.0.tar.gz"
+  sha256 "80862f6f6cd7fd84c4a30edbbaa5a46b391c246d1f356932323c68ac88415bfa"
   head "https://github.com/signal-09/iproute4mac.git", branch: "master"
   license "Apache-2.0"
 
   depends_on :macos
-  depends_on "python@3.12"
+  depends_on "python@3.14"
 
   conflicts_with "iproute2mac", because: "both provide same executables"
 
   resource "pbr" do
-    url "https://files.pythonhosted.org/packages/b2/35/80cf8f6a4f34017a7fe28242dc45161a1baa55c41563c354d8147e8358b2/pbr-6.1.0.tar.gz"
-    sha256 "788183e382e3d1d7707db08978239965e8b9e4e5ed42669bf4758186734d5f24"
+    url "https://files.pythonhosted.org/packages/5e/ab/1de9a4f730edde1bdbbc2b8d19f8fa326f036b4f18b2f72cfbea7dc53c26/pbr-7.0.3.tar.gz"
+    sha256 "b46004ec30a5324672683ec848aed9e8fc500b0d261d40a3229c2d2bbfcedc29"
   end
 
   def install
